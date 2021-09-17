@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <title>Exemplo 4 - Linguagem JavaScript</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Linguagem JavaScript</h1>
+      <h4>Caracaterísticas</h4>
+      <ul>
+        <li>Linguagem de programação</li>
+        <li>Linguagem interpretada</li>
+        <li>Originalmente foi criado como linguagem front-end, ou seja, ele era interpretado e executado no cliente (navegador)</li>
+        <li>Atualmente ele também pode ser executado no back-end através do NodeJS</li>
+        <li>é case-sensitive</li>
+        <li>Fracamente tipida</li>
+        <li>Sintaxe similar a linguagem C, Java</li>
+        <li>Estruturada, Orientada a Objetos</li>
+      </ul>
+      <button onclick="start()" class="btn btn-success btn-lg">
+        Clique aqui para ver o poder do JavaScript
+      </button>
+      
+      <hr />
+      <div class="card-group">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              Idade
+            </h5>
+            <form>
+              <div class="form-control">
+                <div class="form-group">
+                  <input id="inputNascimento" type="number" class="form-control" placeholder="Ano de nascimento">
+                </div>
+                <div class="form-group mb-3">
+                  <button class="btn btn-primary" type="button" onclick="calcularIdade()">Calcular</button>
+                </div>
+              </div>
+              <div class="card-footer ">
+                <h5 id="h5Idade">???</h5>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              Criar botões
+            </h5>
+            <form>
+              <div class="form-group">
+                <button class="btn btn-danger" type="button" onclick="criarBotoes()">Criar</button>
+              </div>
+              <div class="card-footer " id="divBotoes">
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              Calculadora
+            </h5>
+            <form>
+              <div class="form-control">
+                <div class="form-group">
+                  <input id="inputN1" class="form-control" placeholder="Valor 1">
+                </div>
+                <div class="form-group">
+                  <input id="inputN2" class="form-control" placeholder="Valor 2">
+                </div>
+                <div class="form-group">
+                  <select id="selectOperacao" class="form-select">
+                    <option value="1">Adição</option>
+                    <option value="2">Subtração</option>
+                    <option value="3">Multiplicação</option>
+                    <option value="4">Divisão</option>
+                  </select>
+                </div>
+
+                <div class="form-group mb-3">
+                  <button class="btn btn-primary" type="button" onclick="calculadora()">Calcular</button>
+                </div>
+              </div>
+              <div class="card-footer">
+                <h5 id="h5Resultado">???</h5>
+              </div>
+            </form>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script>
+      function start(){
+        var curso = 'Sistemas de Informação';
+        var disciplina = 'Fundamentos do Desenvolvimento Web';
+        alert(disciplina);
+        console.log("Curso:", curso, "Disciplina:", disciplina);
+      }
+      
+      function calcularIdade(){
+        let anoAtual = 2021;
+        let anoNascimento = parseInt(document.getElementById('inputNascimento').value);
+
+        if(isNaN(anoNascimento)){
+          document.getElementById('h5Idade').innerHTML = "Digite um ano válido";
+        } else {
+          document.getElementById('h5Idade').innerHTML = anoAtual - anoNascimento + " anos.";
+        }
+      }
+
+      function criarBotoes(){
+        for(i = 0; i < 10; i++){
+          let b = document.createElement('button');
+          b.className = 'btn btn-danger';
+          b.style = 'margin: 3px';
+          b.innerHTML = i;
+
+          document.getElementById('divBotoes').appendChild(b);
+        }
+      }
+
+      function calculadora(){
+        let n1 = parseInt(document.getElementById('inputN1').value);
+        let n2 = parseInt(document.getElementById('inputN2').value);
+        let operacao = parseInt(document.getElementById('selectOperacao').value);
+
+        if(isNaN(n1) || isNaN(n2))
+          document.getElementById('h5Resultado').innerHTML = "Valores incorretos";
+        else {
+          let rs;
+          switch(operacao) {
+            case 1:
+              rs = n1 + n2;
+              break;
+            case 2:
+              rs = n1 - n2;
+              break;
+            case 3:
+              rs = n1 * n2;
+              break;
+            case 4:
+              rs = n1 / n2;
+              break;
+            default:
+              document.getElementById('h5Resultado').innerHTML = "Algo deu errado";
+          }
+          document.getElementById('h5Resultado').innerHTML = rs;
+        }
+      }
+    </script>
+  </body>
+</html>
